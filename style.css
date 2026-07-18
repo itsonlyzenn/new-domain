@@ -1,0 +1,157 @@
+/* CARA PAKE TTF: Daftarin file font lokal ke CSS */
+@font-face {
+    font-family: 'MinecraftFont';
+    src: url('Minecrafter.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'MinecraftFont', monospace;
+    font-size: 1.15rem; 
+    letter-spacing: 0.5px;
+}
+
+body {
+    /* FOTO TETEP DI TEMPAT (FIXED & COVER) */
+    background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    
+    color: #f8fafc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Kotak Efek Kaca / Glassmorphism */
+.clan-header, .server-status-card, .clan-members {
+    background: rgba(30, 41, 59, 0.75);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+.clan-header {
+    text-align: center;
+}
+
+.clan-header .logo {
+    font-size: 3rem;
+    margin-bottom: 5px;
+}
+
+.clan-header h1 {
+    font-size: 2.2rem;
+    color: #38bdf8; 
+    text-shadow: 2px 2px 0px #0369a1; 
+}
+
+.clan-header p {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    margin-top: 5px;
+}
+
+/* Server Status */
+.server-status-card h3, .clan-members h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #cbd5e1;
+    border-bottom: 2px dashed rgba(255, 255, 255, 0.1);
+    padding-bottom: 5px;
+}
+
+.status-flex {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.4rem;
+}
+
+.indicator {
+    width: 14px;
+    height: 14px;
+    border-radius: 0%; 
+    display: inline-block;
+}
+
+.loading { background: #eab308; box-shadow: 0 0 8px #eab308; }
+.online { background: #22c55e; box-shadow: 0 0 8px #22c55e; }
+.offline { background: #ef4444; box-shadow: 0 0 8px #ef4444; }
+
+.player-count {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #94a3b8;
+}
+
+#player-online {
+    color: #22c55e;
+}
+
+/* KUNCI SCROLL BIAR GAK IRENG BAWAHNYA */
+.member-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 250px; /* Batasin tinggi kotak member (bisa lu ubah sesuka hati) */
+    overflow-y: auto;  /* Aktifkan scroll vertikal internal */
+    padding-right: 8px; /* Kasih space buat scrollbar */
+}
+
+/* Desain Scrollbar biar ala tema gelap minimalis */
+.member-list::-webkit-scrollbar {
+    width: 6px;
+}
+.member-list::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.3);
+    border-radius: 3px;
+}
+.member-list::-webkit-scrollbar-thumb {
+    background: rgba(56, 189, 248, 0.5); /* Warna biru diamond transparan */
+    border-radius: 3px;
+}
+
+.member-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(15, 23, 42, 0.6);
+    padding: 10px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+}
+
+.member-item p {
+    font-size: 1.25rem;
+}
+
+.rank {
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 2px 10px;
+    border-radius: 4px;
+}
+
+.leader { background: #ef4444; color: #fff; }
+.officer { background: #a855f7; color: #fff; }
+.member { background: #64748b; color: #fff; }

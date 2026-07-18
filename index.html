@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clan Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER CLAN -->
+        <header class="clan-header">
+            <div class="logo">🛡️</div>
+            <h1>AURORA</h1>
+            <p>Grinding Bersama, Rata Bersama.</p>
+        </header>
+
+        <!-- LIVE STATUS SERVER -->
+        <section class="server-status-card">
+            <h3>Server Status</h3>
+            <div class="status-flex">
+                <span id="status-indicator" class="indicator loading"></span>
+                <span id="status-text">Checking server...</span>
+            </div>
+            <div class="player-count">
+                Players Online: <strong id="player-online">0</strong> / <span id="player-max">0</span>
+            </div>
+        </section>
+
+        <!-- DAFTAR ANGGOTA CLAN -->
+        <section class="clan-members">
+            <h3>Clan Members</h3>
+            <div class="member-list">
+                <div class="member-item">
+                    <span class="rank leader">Clan Leader</span>
+                    <p>Apple</p>
+                </div>
+                <div class="member-item">
+                    <span class="rank leader">Clan Co-Leader</span>
+                    <p>Jaa</p>
+                </div>
+                <div class="member-item">
+                    <span class="rank officer">Builder</span>
+                    <p>Reyfil & Kaykeyden</p>
+                </div>
+                <div class="member-item">
+                    <span class="rank officer">Clan Senior</span>
+                    <p>Wiled, Enkyy, Cosy Ace</p>
+                </div>
+                <div class="member-item">
+                    <span class="rank officer">Clan Explorer</span>
+                    <p>Fauzan</p>
+                </div>
+                <div class="member-item">
+                    <span class="rank officer">Anggota Inti</span>
+                    <p>Xeron/Akuajalah</p>
+                </div>
+                <div class="member-item">
+                    <span class="rank officer">Anggota Inti</span>
+                    <p>Aqilz</p>
+                </div>
+                <div class="member-item">
+                    <span class="rank member">Anggota</span>
+                    <p>.ye4h8039</p>
+                </div>
+                <div class="member-item">
+                    <span class="rank member">Anggota</span>
+                    <p>.hantwng</p>
+                </div>
+                <div class="member-item">
+                    <span class="rank member">Anggota</span>
+                    <p>.Zaykanj</p>
+                </div>
+                <div class="member-item">
+                    <span class="rank member">Anggota</span>
+                    <p>DAVIDGG2009</p>
+                </div>
+                <div class="member-item">
+                    <span class="rank member">Anggota</span>
+                    <p>Zackyx</p>
+                </div>
+                <div class="member-item">
+                    <span class="rank member">Anggota</span>
+                    <p>Fadhli150</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const serverIP = 'alwination.id'; 
+
+        async function checkServer() {
+            try {
+                const response = await fetch(`https://api.mcsrvstat.us/3/${serverIP}`);
+                const data = await response.json();
+                
+                const indicator = document.getElementById('status-indicator');
+                const statusText = document.getElementById('status-text');
+                const playerOnline = document.getElementById('player-online');
+                const playerMax = document.getElementById('player-max');
+
+                indicator.classList.remove('loading');
+
+                if (data.online) {
+                    indicator.classList.add('online');
+                    statusText.innerText = 'SERVER ONLINE';
+                    playerOnline.innerText = data.players.online;
+                    playerMax.innerText = data.players.max;
+                } else {
+                    indicator.classList.add('offline');
+                    statusText.innerText = 'SERVER OFFLINE';
+                    playerOnline.innerText = '0';
+                    playerMax.innerText = '0';
+                }
+            } catch (error) {
+                document.getElementById('status-text').innerText = 'Error loading status';
+            }
+        }
+
+        checkServer();
+        setInterval(checkServer, 30000);
+    </script>
+</body>
+</html>
